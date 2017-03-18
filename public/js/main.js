@@ -35,6 +35,20 @@ function createPlayer(){
     console.log('newPlayer created');
     map[$("#playerId").val()] = newPlayer;
 }
+
+function call(){
+    $.ajax({
+      method: "POST",
+      url: "/users",
+      data: { user : {name: "Akshay", color: "red"} },
+      dataType: "json"
+    })
+      .done(function( msg ) {
+        alert( "Data Saved: " + msg );
+      });    
+}
+
+
  
 function drawPlayers(map){
     $.each( map, function( i, val ) {
@@ -55,6 +69,23 @@ $(document).ready(function() {
 
         
     }); 
+
+    $("#theForm").submit(function(e) {
+        console.log("innnn")
+        var url = "/users"; // the script where you handle the form input.
+        var data = { user : {name: $('#name').val(), color: $('#color').val()} };
+        $.ajax({
+               type: "POST",
+               url: url,
+               data: data, // serializes the form's elements.
+               success: function(data)
+               {
+                   console.log(data); // show response from the php script.
+               }
+             });
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+    });    
 });
 function coordinatesWithin(x,y, minX, maxX, minY, maxY) {
     return (x >= minX && x <= maxX && y >= minY && y <= maxY);

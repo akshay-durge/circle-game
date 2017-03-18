@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">        
+  </head>
+  <body>
+    <section>
+      <canvas id="c" width="300" height="300"></canvas>
+      <div id="coords">Use arrow keys to move</div>
+
+      <form id='theForm' name='theForm'>
+        <input name='playerId' id='playerId' value="p1">
+        <input name='name' id='name' value="ad">
+        <input name='color' id='color' value="red">
+        <button type="submit">Call</button>
+      </form>
+      <button onclick="createPlayer()">Create Player</button>
+
+
+    </section>
+
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>    
+  </body>
+</html>
