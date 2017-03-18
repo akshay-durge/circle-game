@@ -1,6 +1,7 @@
 var map = new Object();
 var array = [];
 var canvas = document.getElementById('c');
+var activePlayer;
 // var ctx = canvas.getContext("2d");
 
 // var tile_size = 10;
@@ -67,14 +68,19 @@ function drawPlayers(map){
 }
 
 $(document).ready(function() {
-        $("#c").click(function(e){
-            var x = e.pageX - this.offsetLeft,
-                y = e.pageY - this.offsetTop;
-            console.log('Click at ['+x+'|'+y+']');
-            if (coordinatesWithin(x, y, map["p1"].cx - 10, map["p1"].cx + 10, map["p1"].cy - 10, map["p1"].cy + 10)) {
-               alert('circle was clicked');
-            }
-        }); 
+    $("#c").click(function(e){
+        var x = e.pageX - this.offsetLeft,
+            y = e.pageY - this.offsetTop;
+
+        $.each( map, function( i, val ) {
+            if (coordinatesWithin(x, y, map[i].cx - 10, map[i].cx + 10, map[i].cy - 10, map[i].cy + 10)) {
+               console.log(map[i]);
+               activePlayer = map[i];
+            }          
+        });     
+
+        
+    }); 
 });
 function coordinatesWithin(x,y, minX, maxX, minY, maxY) {
     return (x >= minX && x <= maxX && y >= minY && y <= maxY);
@@ -89,41 +95,41 @@ $(document).bind("keydown", function(e){
     {
         //left
         case 37:
-                map["p1"].ctx.clearRect(0, 0, canvas.width, canvas.height);
+                activePlayer.ctx.clearRect(0, 0, canvas.width, canvas.height);
                 // ctx.fillRect(cx - tile_size, cy, tile_size, tile_size);
-                map["p1"].cx = map["p1"].cx - map["p1"].tile_size;
-                map["p1"].cy = map["p1"].cy;
-                map["p1"].cx -= map["p1"].tile_size;  
+                activePlayer.cx = activePlayer.cx - activePlayer.tile_size;
+                activePlayer.cy = activePlayer.cy;
+                activePlayer.cx -= activePlayer.tile_size;  
                 drawPlayers(map);
         break;
             
         //up
         case 38:
-                map["p1"].ctx.clearRect(0, 0, canvas.width, canvas.height);
+                activePlayer.ctx.clearRect(0, 0, canvas.width, canvas.height);
                 // ctx.fillRect(cx, cy - tile_size, tile_size, tile_size);
-                map["p1"].cx = map["p1"].cx;
-                map["p1"].cy = map["p1"].cy - map["p1"].tile_size;
-                map["p1"].cy -= map["p1"].tile_size;
+                activePlayer.cx = activePlayer.cx;
+                activePlayer.cy = activePlayer.cy - activePlayer.tile_size;
+                activePlayer.cy -= activePlayer.tile_size;
                 drawPlayers(map);             
         break;
             
         //right
         case 39:
-                map["p1"].ctx.clearRect(0, 0, canvas.width, canvas.height);
+                activePlayer.ctx.clearRect(0, 0, canvas.width, canvas.height);
                 // ctx.fillRect(cx + tile_size, cy, tile_size, tile_size);
-                map["p1"].cx = map["p1"].cx + map["p1"].tile_size;
-                map["p1"].cy = map["p1"].cy;
-                map["p1"].cx += map["p1"].tile_size;
+                activePlayer.cx = activePlayer.cx + activePlayer.tile_size;
+                activePlayer.cy = activePlayer.cy;
+                activePlayer.cx += activePlayer.tile_size;
                 drawPlayers(map);                
         break;
         
         //down
         case 40:
-                map["p1"].ctx.clearRect(0, 0, canvas.width, canvas.height);
+                activePlayer.ctx.clearRect(0, 0, canvas.width, canvas.height);
                 // ctx.fillRect(cx, cy + tile_size, tile_size, tile_size);
-                map["p1"].cx = map["p1"].cx;
-                map["p1"].cy = map["p1"].cy + map["p1"].tile_size;
-                map["p1"].cy += map["p1"].tile_size;
+                activePlayer.cx = activePlayer.cx;
+                activePlayer.cy = activePlayer.cy + activePlayer.tile_size;
+                activePlayer.cy += activePlayer.tile_size;
                 drawPlayers(map);               
         break;
     }
