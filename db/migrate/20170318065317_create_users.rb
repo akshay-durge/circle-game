@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
     end
     create_table :notice_boards do |t|
     	t.column :user_id, :integer
-    	t.column :notice_boards, :string
+    	t.column :msg_type, :string
     	t.column :message, :string
       	t.timestamps
     end    
