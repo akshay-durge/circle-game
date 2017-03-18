@@ -10,7 +10,7 @@
       <div id="coords">Use arrow keys to move</div>
 
       <form id='theForm' name='theForm'>
-        <input type="number" name='playerId' id='playerId' value="p1">
+        <input type="number" name='playerId' id='playerId' value="1">
         <input name='name' id='name' value="ad">
         <input name='color' id='color' value="red">
         <button type="submit">Create Player</button>
@@ -22,7 +22,12 @@
 
       <br>
       <button onclick="getAllMessages()">getAllMessages</button>
-
+<div style="text-align:center;width:480px;">
+  <button id="moveLeft">LEFT</button><br><br>
+  <button id="moveUp">UP</button>
+  <button id="moveRight">RIGHT</button><br><br>
+  <button id="moveDown"">DOWN</button>
+</div>
       <table id="messageDataTable"> 
       </table>
 

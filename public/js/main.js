@@ -42,7 +42,7 @@ function deleteAllUsers(){
       url: "/users/1"
     })
       .done(function( msg ) {
-        alert( "Users deleted successfully.");
+        console.log( msg );
       });    
 }
 function deleteAllMessages(){
@@ -128,7 +128,7 @@ $(document).ready(function() {
                success: function(data)
                {
                     createPlayer();
-                   console.log(data); // show response from the php script.
+                   console.log(data);
                }
              });
 
@@ -140,8 +140,28 @@ function coordinatesWithin(x,y, minX, maxX, minY, maxY) {
 }
  
 $(document).bind("keydown", function(e){
+    move(e.keyCode);
+});
 
-    switch(e.keyCode)
+
+$('#moveLeft').click(function () {
+    move(37);
+});
+
+$('#moveUp').click(function () {
+    move(38);
+});
+
+$('#moveRight').click(function () {
+    move(39);
+});
+
+$('#moveDown').click(function () {
+    move(40);
+});
+
+function move(direction){
+    switch(direction)
     {
         //left
         case 37:
@@ -202,4 +222,4 @@ $(document).bind("keydown", function(e){
         var msgToDisplay = activePlayer.name + ' Hit The wall!';
         createMessage('hitWall', msgToDisplay, activePlayer.playerId);        
     }
-});
+}
