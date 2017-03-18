@@ -15,26 +15,27 @@ function draw(player) {
 }  
 
 function createPlayer(){
-    var playerCount = Object.keys(map).length + 1;
-    var newPlayer = {
-        name: $("#name").val(),
-        playerId: $("#playerId").val(),
-        color: $("#color").val(),        
-        ctx: canvas.getContext("2d"),
-        radius: circleRadius,
-        cx: canvas.width / 2,
-        cy: canvas.height / 2    
-    };
-    newPlayer.ctx.beginPath();
-    newPlayer.ctx.arc(newPlayer.cx, newPlayer.cy, newPlayer.radius, 0, 2 * Math.PI, false);
-    newPlayer.ctx.fillStyle = $("#color").val();
-    newPlayer.ctx.fill();
-    newPlayer.ctx.lineWidth = 1;
-    newPlayer.ctx.strokeStyle = '#d2d1d1';
-    newPlayer.ctx.stroke();  
-    console.log('newPlayer created');
-    map[$("#playerId").val()] = newPlayer;
-    $('.user-form').delay(300).fadeOut(500);
+  var playerCount = Object.keys(map).length + 1;
+  var newPlayer = {
+      name: $("#name").val(),
+      playerId: $("#playerId").val(),
+      color: $("#color").val(),        
+      ctx: canvas.getContext("2d"),
+      radius: circleRadius,
+      cx: canvas.width / 2,
+      cy: canvas.height / 2    
+  };
+  newPlayer.ctx.beginPath();
+  newPlayer.ctx.arc(newPlayer.cx, newPlayer.cy, newPlayer.radius, 0, 2 * Math.PI, false);
+  newPlayer.ctx.fillStyle = $("#color").val();
+  newPlayer.ctx.fill();
+  newPlayer.ctx.lineWidth = 1;
+  newPlayer.ctx.strokeStyle = '#d2d1d1';
+  newPlayer.ctx.stroke();  
+  console.log('newPlayer created');
+  map[$("#playerId").val()] = newPlayer;
+  // $('.user-form').delay(300).fadeOut(500);
+
 }
 
 function newPlayer(){
@@ -113,6 +114,7 @@ function drawPlayers(map){
 }
 
 $(document).ready(function() {
+    resetGame(); //Reset game
     $("#canvas").click(function(e){
         var x = e.pageX - this.offsetLeft,
             y = e.pageY - this.offsetTop;
@@ -122,8 +124,16 @@ $(document).ready(function() {
             }          
         });
     }); 
-
+ 
     $("#theForm").submit(function(e) {
+      var duplicateUserId = false;
+      $.each( map, function( i, val ) {
+        if(i == $("#playerId").val()){
+          duplicateUserId = true;
+          alert('Player ID is already taken. Please enter diffrent ID.');
+        }
+      });
+      if(!duplicateUserId){
         var url = "/users";
         var data = { user : {name: $('#name').val(), color: $('#color').val(), player_id: $('#playerId').val()} };
         $.ajax({
@@ -136,8 +146,8 @@ $(document).ready(function() {
                    console.log(data);
                }
              });
-
-        e.preventDefault(); // avoid to execute the actual submit of the form.
+      }      
+      e.preventDefault(); // avoid to execute the actual submit of the form.
     });    
 });
 function coordinatesWithin(x,y, minX, maxX, minY, maxY) {
@@ -165,6 +175,7 @@ $('#moveDown').click(function () {
 });
 
 function move(direction){
+  if(activePlayer != null){
     switch(direction)
     {
         //left
@@ -234,4 +245,5 @@ function move(direction){
             $('#canvas').removeClass('warning');
         },2000);
     }
+  }
 }
