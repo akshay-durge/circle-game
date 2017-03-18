@@ -4,7 +4,6 @@ body {
 #canvas {
 	border: 1px solid grey;
 	border-radius:10px;
-	margin-bottom:30px;
 	-webkit-box-shadow: 7px 7px 9px 0px rgba(50, 50, 50, 0.11);
 	-moz-box-shadow:    7px 7px 9px 0px rgba(50, 50, 50, 0.11);
 	box-shadow:         7px 7px 9px 0px rgba(50, 50, 50, 0.11);    

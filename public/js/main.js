@@ -63,6 +63,7 @@ function deleteAllMessages(){
 function resetGame(){
   deleteAllUsers();
   deleteAllMessages();
+  newPlayer();
 }
 function createMessage(type, msg, playerId){
     var url = "/notice_boards";
