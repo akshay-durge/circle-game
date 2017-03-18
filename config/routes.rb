@@ -1,4 +1,7 @@
 Game::Application.routes.draw do
+  resources :notice_boards
+
+
   resources :users
 
 

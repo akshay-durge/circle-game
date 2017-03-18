@@ -18,7 +18,7 @@ function createPlayer(){
     var playerCount = Object.keys(map).length + 1;
     var newPlayer = {
         name: $("#name").val(),
-        id: $("#playerId").val(),
+        playerId: $("#playerId").val(),
         color: $("#color").val(),        
         ctx: canvas.getContext("2d"),
         radius: circleRadius,
@@ -36,19 +36,37 @@ function createPlayer(){
     map[$("#playerId").val()] = newPlayer;
 }
 
-function call(){
+function deleteAllUsers(){
     $.ajax({
-      method: "POST",
-      url: "/users",
-      data: { user : {name: "Akshay", color: "red"} },
-      dataType: "json"
+      method: "DELETE",
+      url: "/users/1"
     })
       .done(function( msg ) {
-        alert( "Data Saved: " + msg );
+        alert( "Users deleted successfully.");
       });    
 }
-
-
+function deleteAllMessages(){
+    $.ajax({
+      method: "DELETE",
+      url: "/notice_boards/1"
+    })
+      .done(function( msg ) {
+        console.log( msg );
+      });    
+}
+function createMessage(type, msg, playerId){
+    var url = "/notice_boards";
+    var data = { notice_board : {type: type, message: msg}, player_id: playerId };    
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: data,
+           success: function(data)
+           {
+               console.log(data);
+           }
+         });  
+}
  
 function drawPlayers(map){
     $.each( map, function( i, val ) {
@@ -71,15 +89,15 @@ $(document).ready(function() {
     }); 
 
     $("#theForm").submit(function(e) {
-        console.log("innnn")
         var url = "/users"; // the script where you handle the form input.
-        var data = { user : {name: $('#name').val(), color: $('#color').val()} };
+        var data = { user : {name: $('#name').val(), color: $('#color').val(), player_id: $('#playerId').val()} };
         $.ajax({
                type: "POST",
                url: url,
-               data: data, // serializes the form's elements.
+               data: data,
                success: function(data)
                {
+                    createPlayer();
                    console.log(data); // show response from the php script.
                }
              });
@@ -140,14 +158,18 @@ $(document).bind("keydown", function(e){
         break;
     }
     $.each( map, function( i, val ) {
-        if(i != activePlayer.id){
+        if(i != activePlayer.playerId){
             if((Math.abs(map[i].cx - activePlayer.cx) <= (map[i].radius + activePlayer.radius)) && (Math.abs(map[i].cy - activePlayer.cy) <= (map[i].radius + activePlayer.radius))){
                 console.log(activePlayer.name + ' Collide with '+ map[i].name);
+                var msgToDisplay = activePlayer.name + ' Collide with '+ map[i].name;
+                createMessage('collision', msgToDisplay, activePlayer.playerId);
             }                
         }
     });      
  
     if((activePlayer.cx <= activePlayer.radius || activePlayer.cx >= (canvas.height - 20)) || (activePlayer.cy <= activePlayer.radius || activePlayer.cy >= (canvas.height - 20))){
-        console.log('Hit The wall!');
+        console.log(activePlayer.name + ' Hit The wall!');
+        var msgToDisplay = activePlayer.name + ' Hit The wall!';
+        createMessage('hitWall', msgToDisplay, activePlayer.playerId);        
     }
 });

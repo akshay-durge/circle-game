@@ -10,13 +10,15 @@
       <div id="coords">Use arrow keys to move</div>
 
       <form id='theForm' name='theForm'>
-        <input name='playerId' id='playerId' value="p1">
+        <input type="number" name='playerId' id='playerId' value="p1">
         <input name='name' id='name' value="ad">
         <input name='color' id='color' value="red">
-        <button type="submit">Call</button>
+        <button type="submit">Create Player</button>
       </form>
-      <button onclick="createPlayer()">Create Player</button>
-
+      <!-- <button onclick="createPlayer()">Create Player</button> -->
+      <button onclick="deleteAllUsers()">Delete All users</button>
+      <button onclick="deleteAllMessages()">Delete All messages</button>
+      <button onclick="createMessage()">Create messages</button>
 
     </section>
 
