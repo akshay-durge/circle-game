@@ -1,2 +1,32 @@
-body { padding:50px }
-#c { border:1px solid grey; _border-radius:10px; margin-bottom:30px; }
+body { 
+	padding: 20px;
+}
+#canvas {
+	border:1px solid grey;
+	border-radius:10px;
+	margin-bottom:30px;
+	-webkit-box-shadow: 7px 7px 9px 0px rgba(50, 50, 50, 0.11);
+	-moz-box-shadow:    7px 7px 9px 0px rgba(50, 50, 50, 0.11);
+	box-shadow:         7px 7px 9px 0px rgba(50, 50, 50, 0.11);    
+	border-color: #d2d1d1;	
+}
+.nav-arrow{
+	max-width: 110px;
+}
+.nav-arrow #moveRight{
+	float: right;
+}
+.nav-arrow #moveLeft{
+	float: left;
+}
+.nav-arrow .middle-arrows{
+	padding: 5px 0;
+}
+.user-form{
+	background: #f3f3f3;
+    padding: 15px;
+	-webkit-box-shadow: 7px 7px 9px 0px rgba(50, 50, 50, 0.11);
+	-moz-box-shadow:    7px 7px 9px 0px rgba(50, 50, 50, 0.11);
+	box-shadow:         7px 7px 9px 0px rgba(50, 50, 50, 0.11);    
+	border-color: #d2d1d1;
+}

@@ -1,6 +1,6 @@
 var map = new Object();
 var array = [];
-var canvas = document.getElementById('c');
+var canvas = document.getElementById('canvas');
 var activePlayer;
 var circleRadius = 10;
 
@@ -30,7 +30,7 @@ function createPlayer(){
     newPlayer.ctx.fillStyle = $("#color").val();
     newPlayer.ctx.fill();
     newPlayer.ctx.lineWidth = 1;
-    newPlayer.ctx.strokeStyle = $("#color").val();
+    newPlayer.ctx.strokeStyle = '#d2d1d1';
     newPlayer.ctx.stroke();  
     console.log('newPlayer created');
     map[$("#playerId").val()] = newPlayer;
@@ -53,6 +53,10 @@ function deleteAllMessages(){
       .done(function( msg ) {
         console.log( msg );
       });    
+}
+function resetGame(){
+  deleteAllUsers();
+  deleteAllMessages();
 }
 function createMessage(type, msg, playerId){
     var url = "/notice_boards";
@@ -93,8 +97,7 @@ function drawTable(data) {
 function drawRow(rowData) {
 
     var row = $("<tr />")
-    $("#messageDataTable").append(row); 
-    row.append($("<td>" + rowData.user_id + "</td>"));
+    $("#messageDataTable").append(row);
     row.append($("<td>" + rowData.message + "</td>"));
 }
 
@@ -105,7 +108,7 @@ function drawPlayers(map){
 }
 
 $(document).ready(function() {
-    $("#c").click(function(e){
+    $("#canvas").click(function(e){
         var x = e.pageX - this.offsetLeft,
             y = e.pageY - this.offsetTop;
 

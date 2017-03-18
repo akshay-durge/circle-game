@@ -2,34 +2,96 @@
 <html>
   <head>
     <title>Game</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">   
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">      
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
     <section>
-      <canvas id="c" width="300" height="300"></canvas>
-      <div id="coords">Use arrow keys to move</div>
+      <canvas id="canvas" width="300" height="300"></canvas>
 
-      <form id='theForm' name='theForm'>
-        <input type="number" name='playerId' id='playerId' value="1">
-        <input name='name' id='name' value="ad">
-        <input name='color' id='color' value="red">
-        <button type="submit">Create Player</button>
-      </form>
+        <div class="row">
+          <div class="col-xs-4">
+            <div class="nav-arrow">
+              <div class="text-center">
+                <button id="moveUp">
+                  <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="middle-arrows">
+                <button id="moveLeft">
+                  <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                </button>
+                <button id="moveRight">
+                  <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                </button>
+                <div class="clearfix"></div>
+              </div>
+              <div class="text-center">
+                <button id="moveDown"">
+                  <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>          
+          </div>
+          <div class="col-xs-8">
+            <button class="btn btn-primary" onclick="resetGame()">
+              <i class="fa fa-refresh" aria-hidden="true"></i> Reset Game
+            </button>
+            <button class="btn btn-primary" onclick="getAllMessages()">
+              Refresh Board
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <form class="form-horizontal user-form" id='theForm' name='theForm'>
+              <div class="form-group">
+                <label for="playerId" class="col-sm-2 control-label">ID</label>
+                <div class="col-sm-10">
+                  <input type="number" name='playerId' id='playerId' value='1' class="form-control" placeholder="Player ID">
+                </div>                
+              </div>
+              <div class="form-group">
+                <label for="playerId" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" name='name' id='name' value="ad" class="form-control" placeholder="Player Name">
+                </div>                
+              </div>
+              <div class="form-group">
+                <label for="playerId" class="col-sm-2 control-label">Color</label>
+                <div class="col-sm-10">
+                  <input type="text" name='color' id='color' value="red" class="form-control" placeholder="Player Color">
+                </div>                  
+              </div>  
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+              </div>                
+              
+            </form>  
+          </div>
+          <div class="col-sm-6">
+            <table id="messageDataTable" class="table table-striped"></table>
+          </div>
+        </div>
+
+
+       
+
+
       <!-- <button onclick="createPlayer()">Create Player</button> -->
-      <button onclick="deleteAllUsers()">Delete All users</button>
+<!--       <button onclick="deleteAllUsers()">Delete All users</button>
       <button onclick="deleteAllMessages()">Delete All messages</button>
       <button onclick="createMessage()">Create messages</button>
 
       <br>
-      <button onclick="getAllMessages()">getAllMessages</button>
-<div style="text-align:center;width:480px;">
-  <button id="moveLeft">LEFT</button><br><br>
-  <button id="moveUp">UP</button>
-  <button id="moveRight">RIGHT</button><br><br>
-  <button id="moveDown"">DOWN</button>
-</div>
-      <table id="messageDataTable"> 
-      </table>
+      <button onclick="getAllMessages()">getAllMessages</button> -->
+
+
 
     </section>
 
