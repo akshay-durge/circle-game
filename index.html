@@ -5,15 +5,18 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<canvas id="c" width="300" height="300"></canvas>
-	<div id="coords">Use arrow keys to move</div>
+	<section>
+		<canvas id="c" width="300" height="300"></canvas>
+		<div id="coords">Use arrow keys to move</div>
 
-<form id='form1' name='form1'>
-  <input name='playerId' id='playerId' value="a">
-  <input name='name' id='name' value="ad">
-  <input name='color' id='color' value="red">
-</form>
-<button onclick="createPlayer('ad', 'i', 'red')">Create Player</button>
+		<form id='form1' name='form1'>
+		  <input name='playerId' id='playerId' value="p1">
+		  <input name='name' id='name' value="ad">
+		  <input name='color' id='color' value="red">
+		</form>
+		<button onclick="createPlayer('ad', 'i', 'red')">Create Player</button>
+	</section>
+	
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
