@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170318083158) do
+ActiveRecord::Schema.define(:version => 20170318090122) do
 
   create_table "notice_boards", :force => true do |t|
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "msg_type"
     t.string   "message"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

@@ -56,7 +56,7 @@ function deleteAllMessages(){
 }
 function createMessage(type, msg, playerId){
     var url = "/notice_boards";
-    var data = { notice_board : {type: type, message: msg}, player_id: playerId };    
+    var data = { notice_board : {msg_type: type, message: msg}, player_id: playerId };    
     $.ajax({
            type: "POST",
            url: url,
@@ -67,7 +67,37 @@ function createMessage(type, msg, playerId){
            }
          });  
 }
- 
+function getAllMessages(){
+    var url = "/notice_boards";  
+    $.ajax({
+           type: "GET",
+           url: url,
+           success: function(data)
+           {
+               console.log(data);
+               drawTable(data.notice_boards);
+           }
+         });  
+}
+
+function drawTable(data) {
+    $("#messageDataTable tr").remove();
+    var row = $("<tr />")
+    $("#messageDataTable").append(row); 
+    row.append($("<th colspan='2'>Messages</th>"));    
+    for (var i = 0; i < data.length; i++) {
+        drawRow(data[i]);
+    }
+}
+
+function drawRow(rowData) {
+
+    var row = $("<tr />")
+    $("#messageDataTable").append(row); 
+    row.append($("<td>" + rowData.user_id + "</td>"));
+    row.append($("<td>" + rowData.message + "</td>"));
+}
+
 function drawPlayers(map){
     $.each( map, function( i, val ) {
       draw(map[i]);

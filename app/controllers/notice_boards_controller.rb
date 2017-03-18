@@ -5,11 +5,7 @@ class NoticeBoardsController < ApplicationController
   # GET /notice_boards.json
   def index
     @notice_boards = NoticeBoard.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @notice_boards }
-    end
+    render :json => { :notice_boards =>  @notice_boards.as_json}    
   end
 
   # GET /notice_boards/1
