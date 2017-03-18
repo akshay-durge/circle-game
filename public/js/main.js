@@ -63,6 +63,7 @@ function deleteAllMessages(){
 function resetGame(){
   deleteAllUsers();
   deleteAllMessages();
+  getAllMessages();
   newPlayer();
 }
 function createMessage(type, msg, playerId){
