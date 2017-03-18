@@ -101,7 +101,6 @@ function drawTable(data) {
 }
 
 function drawRow(rowData) {
-
     var row = $("<tr />")
     $("#messageDataTable").append(row);
     row.append($("<td>" + rowData.message + "</td>"));
@@ -117,18 +116,15 @@ $(document).ready(function() {
     $("#canvas").click(function(e){
         var x = e.pageX - this.offsetLeft,
             y = e.pageY - this.offsetTop;
-
         $.each( map, function( i, val ) {
             if (coordinatesWithin(x, y, map[i].cx - map[i].radius, map[i].cx + map[i].radius, map[i].cy - map[i].radius, map[i].cy + map[i].radius)) {
                activePlayer = map[i];
             }          
-        });     
-
-        
+        });
     }); 
 
     $("#theForm").submit(function(e) {
-        var url = "/users"; // the script where you handle the form input.
+        var url = "/users";
         var data = { user : {name: $('#name').val(), color: $('#color').val(), player_id: $('#playerId').val()} };
         $.ajax({
                type: "POST",
@@ -151,7 +147,6 @@ function coordinatesWithin(x,y, minX, maxX, minY, maxY) {
 $(document).bind("keydown", function(e){
     move(e.keyCode);
 });
-
 
 $('#moveLeft').click(function () {
     move(37);
