@@ -60,11 +60,14 @@ function deleteAllMessages(){
         console.log( msg );
       });    
 }
-function resetGame(){
+function clearGameObjects(){
   deleteAllUsers();
   deleteAllMessages();
   getAllMessages();
   newPlayer();
+}
+function resetGame(){
+  location.reload();
 }
 function createMessage(type, msg, playerId){
     var url = "/notice_boards";
@@ -116,7 +119,7 @@ function drawPlayers(map){
 }
 
 $(document).ready(function() {
-    resetGame(); //Reset game
+    clearGameObjects(); //clear Game Objects
     $("#canvas").click(function(e){
         var x = e.pageX - this.offsetLeft,
             y = e.pageY - this.offsetTop;
