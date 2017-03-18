@@ -12,33 +12,37 @@ var canvas = document.getElementById('c');
 // var cx = startX,
 //     cy = startY;
 
-var player1 = {
-    ctx: canvas.getContext("2d"),
-    tile_size: 10,
-    radius: 10,
-    cx: canvas.width / 2,
-    cy: canvas.height / 2    
-};
+// var player1 = {
+//     name: 'n1',
+//     id: 'i1',
+//     color: 'green',
+//     ctx: canvas.getContext("2d"),
+//     tile_size: 10,
+//     radius: 10,
+//     cx: canvas.width / 2,
+//     cy: canvas.height / 2    
+// };
 
-map["p1"] = player1;
-
-
-     
-
-draw(map["p1"]);
+// map["p1"] = player1;
+// draw(map["p1"]);
 
 function draw(player) {
     player.ctx.beginPath();
     player.ctx.arc(player.cx, player.cy, player.radius, 0, 2 * Math.PI, false);
-    player.ctx.fillStyle = 'green';
+    player.ctx.fillStyle = player.color;
     player.ctx.fill();
     player.ctx.lineWidth = 1;
-    player.ctx.strokeStyle = 'red';
+    player.ctx.strokeStyle = player.color;
     player.ctx.stroke();
+    console.log("draw: " + player.color)
 }  
 
 function createPlayer(){
+    var playerCount = Object.keys(map).length + 1;
     var newPlayer = {
+        name: $("#name").val(),
+        id: $("#playerId").val(),
+        color: $("#color").val(),        
         ctx: canvas.getContext("2d"),
         tile_size: 10,
         radius: 10,
@@ -47,19 +51,33 @@ function createPlayer(){
     };
     newPlayer.ctx.beginPath();
     newPlayer.ctx.arc(newPlayer.cx, newPlayer.cy, newPlayer.radius, 0, 2 * Math.PI, false);
-    newPlayer.ctx.fillStyle = 'red';
+    newPlayer.ctx.fillStyle = $("#color").val();
     newPlayer.ctx.fill();
     newPlayer.ctx.lineWidth = 1;
-    newPlayer.ctx.strokeStyle = 'red';
+    newPlayer.ctx.strokeStyle = $("#color").val();
     newPlayer.ctx.stroke();  
     console.log('newPlayer created');
-    map["p" + (Object.keys(map).length + 1)] = newPlayer;
+    map["p" + playerCount] = newPlayer;
 }
  
 function drawPlayers(map){
     $.each( map, function( i, val ) {
       draw(map[i]);
     });
+}
+
+$(document).ready(function() {
+        $("#c").click(function(e){
+            var x = e.pageX - this.offsetLeft,
+                y = e.pageY - this.offsetTop;
+            console.log('Click at ['+x+'|'+y+']');
+            if (coordinatesWithin(x, y, map["p1"].cx - 10, map["p1"].cx + 10, map["p1"].cy - 10, map["p1"].cy + 10)) {
+               alert('circle was clicked');
+            }
+        }); 
+});
+function coordinatesWithin(x,y, minX, maxX, minY, maxY) {
+    return (x >= minX && x <= maxX && y >= minY && y <= maxY);
 }
 
 // ctx.fillRect(startX, startY, tile_size, tile_size);
