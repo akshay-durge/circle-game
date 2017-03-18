@@ -41,6 +41,7 @@ body {
 }
 .table-responsive{
 	max-height: 300px;
+	overflow: auto;
 }
 .m-b-sm{
 	margin-bottom: 5px;
