@@ -73,6 +73,7 @@ function createMessage(type, msg, playerId){
            success: function(data)
            {
                console.log(data);
+               getAllMessages();
            }
          });  
 }
@@ -93,7 +94,7 @@ function drawTable(data) {
     $("#messageDataTable tr").remove();
     var row = $("<tr />")
     $("#messageDataTable").append(row); 
-    row.append($("<th colspan='2'>Messages</th>"));    
+    row.append($("<th colspan='2' class='text-center'>Messages</th>"));    
     for (var i = 0; i < data.length; i++) {
         drawRow(data[i]);
     }
@@ -219,15 +220,23 @@ function move(direction){
         if(i != activePlayer.playerId){
             if((Math.abs(map[i].cx - activePlayer.cx) <= (map[i].radius + activePlayer.radius)) && (Math.abs(map[i].cy - activePlayer.cy) <= (map[i].radius + activePlayer.radius))){
                 console.log(activePlayer.name + ' Collide with '+ map[i].name);
-                var msgToDisplay = activePlayer.name + ' Collide with '+ map[i].name;
+                $('#canvas').addClass('error');
+                var msgToDisplay = 'Player ' + activePlayer.name + ' Collides with '+ map[i].name;
                 createMessage('collision', msgToDisplay, activePlayer.playerId);
+                setTimeout(function() {
+                    $('#canvas').removeClass('error');
+                },2000);
             }                
         }
     });      
  
     if((activePlayer.cx <= activePlayer.radius || activePlayer.cx >= (canvas.height - 20)) || (activePlayer.cy <= activePlayer.radius || activePlayer.cy >= (canvas.height - 20))){
         console.log(activePlayer.name + ' Hit The wall!');
-        var msgToDisplay = activePlayer.name + ' Hit The wall!';
+        $('#canvas').addClass('warning');
+        var msgToDisplay = 'Player ' + activePlayer.name + ' Hit The wall!';
         createMessage('hitWall', msgToDisplay, activePlayer.playerId);        
+        setTimeout(function() {
+            $('#canvas').removeClass('warning');
+        },2000);
     }
 }

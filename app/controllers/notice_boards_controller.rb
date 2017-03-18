@@ -4,7 +4,7 @@ class NoticeBoardsController < ApplicationController
   # GET /notice_boards
   # GET /notice_boards.json
   def index
-    @notice_boards = NoticeBoard.all
+    @notice_boards = NoticeBoard.order("created_at DESC").all
     render :json => { :notice_boards =>  @notice_boards.as_json}    
   end
 

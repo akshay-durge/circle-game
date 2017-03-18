@@ -2,13 +2,21 @@ body {
 	padding: 20px;
 }
 #canvas {
-	border:1px solid grey;
+	border: 1px solid grey;
 	border-radius:10px;
 	margin-bottom:30px;
 	-webkit-box-shadow: 7px 7px 9px 0px rgba(50, 50, 50, 0.11);
 	-moz-box-shadow:    7px 7px 9px 0px rgba(50, 50, 50, 0.11);
 	box-shadow:         7px 7px 9px 0px rgba(50, 50, 50, 0.11);    
 	border-color: #d2d1d1;	
+	transition: box-shadow .3s cubic-bezier(0.4, 0, 0.2, 1)
+
+}
+#canvas.warning{
+	box-shadow: 7px 7px 9px 0px rgba(197, 24, 10, 0.37);
+}
+#canvas.error{
+	box-shadow: 7px 7px 9px 0px rgba(197, 22, 10, 0.47);
 }
 .nav-arrow{
 	max-width: 110px;
@@ -31,6 +39,9 @@ body {
 	-moz-box-shadow:    7px 7px 9px 0px rgba(50, 50, 50, 0.11);
 	box-shadow:         7px 7px 9px 0px rgba(50, 50, 50, 0.11);    
 	border-color: #d2d1d1;
+}
+.table-responsive{
+	max-height: 300px;
 }
 .m-b-sm{
 	margin-bottom: 5px;
