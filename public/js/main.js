@@ -34,6 +34,11 @@ function createPlayer(){
     newPlayer.ctx.stroke();  
     console.log('newPlayer created');
     map[$("#playerId").val()] = newPlayer;
+    $('.user-form').delay(300).fadeOut(500);
+}
+
+function newPlayer(){
+  $('.user-form').fadeIn(300);
 }
 
 function deleteAllUsers(){

@@ -23,10 +23,15 @@ body {
 	padding: 5px 0;
 }
 .user-form{
+	display: none;
 	background: #f3f3f3;
     padding: 15px;
+    margin-top: 10px;
 	-webkit-box-shadow: 7px 7px 9px 0px rgba(50, 50, 50, 0.11);
 	-moz-box-shadow:    7px 7px 9px 0px rgba(50, 50, 50, 0.11);
 	box-shadow:         7px 7px 9px 0px rgba(50, 50, 50, 0.11);    
 	border-color: #d2d1d1;
+}
+.m-b-sm{
+	margin-bottom: 5px;
 }
