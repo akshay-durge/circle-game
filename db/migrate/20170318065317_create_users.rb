@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
     	t.column :name, :string
     	t.column :color, :string
-    	t.column player_id, :integer
+    	t.column :player_id, :integer
       	t.timestamps
     end
     create_table :notice_boards do |t|
