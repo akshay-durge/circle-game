@@ -30,7 +30,7 @@ body {
 	padding: 5px 0;
 }
 .user-form{
-	display: none;
+	/*display: none;*/
 	background: #f3f3f3;
     padding: 15px;
     margin-top: 10px;
@@ -45,4 +45,9 @@ body {
 }
 .m-b-sm{
 	margin-bottom: 5px;
+}
+@media (max-width: 768px) { 
+	.user-form-hidden{
+		display: none;
+	}
 }

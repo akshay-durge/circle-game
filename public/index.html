@@ -39,11 +39,14 @@
             <button class="btn btn-primary m-b-sm" onclick="resetGame()">
               <i class="fa fa-retweet" aria-hidden="true"></i> Reset Game
             </button>
+            <button class="btn btn-primary m-b-sm visible-xs" onclick="newPlayer()">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i> New Player
+            </button>            
           </div>
         </div>
         <div class="row">
           <div class="col-sm-5">
-            <form class="form-horizontal user-form" id='theForm' name='theForm'>
+            <form class="form-horizontal user-form user-form-hidden" id='theForm' name='theForm'>
               <div class="form-group">
                 <label for="playerId" class="col-sm-2 control-label">ID</label>
                 <div class="col-sm-10">

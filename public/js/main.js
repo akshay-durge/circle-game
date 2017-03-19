@@ -35,11 +35,12 @@ function createPlayer(){
   console.log('newPlayer created');
   map[$("#playerId").val()] = newPlayer;
   // $('.user-form').delay(300).fadeOut(500);
+  $('.user-form').addClass('user-form-hidden');
 
 }
 
 function newPlayer(){
-  $('.user-form').fadeIn(300);
+  $('.user-form').removeClass('user-form-hidden');
 }
 
 function deleteAllUsers(){
@@ -64,7 +65,7 @@ function clearGameObjects(){
   deleteAllUsers();
   deleteAllMessages();
   getAllMessages();
-  newPlayer();
+  // newPlayer();
 }
 function resetGame(){
   location.reload();
